@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
 void main() {
-  runApp(FlutterBlueApp());
+  runApp(FlutterBlueTooth());
 }
 
-class FlutterBlueApp extends StatelessWidget {
+class FlutterBlueTooth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +18,7 @@ class FlutterBlueApp extends StatelessWidget {
           builder: (c, snapshot) {
             final state = snapshot.data;
             if (state == BluetoothState.on) {
-              return FindDevicesScreen();
+              return Scan_device();
             }
             return const MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -34,7 +34,7 @@ class FlutterBlueApp extends StatelessWidget {
   }
 }
 
-class FindDevicesScreen extends StatelessWidget {
+class Scan_device extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,7 +112,7 @@ class FindDevicesScreen extends StatelessWidget {
         initialData: false,
         builder: (c, snapshot) {
             return FloatingActionButton(
-                child: const Icon(Icons.search),
+                child: const Icon(Icons.refresh),
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: const Duration(seconds: 4)));
         },
